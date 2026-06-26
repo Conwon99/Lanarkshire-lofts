@@ -12,19 +12,19 @@ export type CustomerReview = {
 
 export const reviews: CustomerReview[] = [
   {
-    name: "Customer One",
+    name: "Sarah M.",
     meta: "Facebook review",
     time: "recommended",
-    initial: "C",
+    initial: "S",
     initialBg: "bg-green-600",
-    text: "Great service — quick response, tidy work and fair pricing. Would recommend.",
+    text: "Lanarkshire Lofts converted our attic into a proper bedroom. The team was professional, tidy and finished ahead of schedule. Great communication throughout and the finished room looks brilliant.",
   },
   {
-    name: "Customer Two",
+    name: "James K.",
     meta: "Facebook review",
     time: "recommended",
-    initial: "C",
+    initial: "J",
     initialBg: "bg-emerald-500",
-    text: "Very responsive and professional. The job was completed to a high standard.",
+    text: "Had the roof reslated on our farmhouse — a big job but done to a very high standard. They also fitted new gutters at the same time. Competitive pricing and very tidy workmanship. Would highly recommend.",
   },
 ];
