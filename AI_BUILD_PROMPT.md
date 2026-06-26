@@ -249,7 +249,29 @@ Before finishing, verify against `SEO-RULES-GUIDE.txt`:
 
 ---
 
-## Step 9 — Build and verify
+## Step 9 — Confirm Netlify deploy branch
+
+Before pushing, check which branch Netlify is watching:
+
+1. Open the Netlify dashboard → **Deploys** tab
+2. Look for: *"Auto publishing is on. Deploys from `<branch-name>` are published automatically."*
+3. Note that branch name — it is often **not** `main` when the site was set up via a Claude session (it will be the feature branch from that session, e.g. `claude/prompt-file-update-xxxxxx`)
+
+Then push your changes to **that exact branch**:
+
+```bash
+# If Netlify watches main:
+git push origin HEAD:main
+
+# If Netlify watches a specific feature branch (replace with actual branch name):
+git push origin HEAD:claude/prompt-file-update-xxxxxx
+```
+
+> **Fix it permanently:** In Netlify → Deploy settings → Branch to deploy, change it to `main`. Then all future builds follow the normal PR → main workflow.
+
+---
+
+## Step 10 — Build and verify
 
 ```bash
 npm run build
@@ -305,6 +327,7 @@ Tracking phone: null
 12. `src/pages/about.astro` (owner/team blocks + title)
 13. `src/pages/services/index.astro` (H1 + schema name)
 14. `npm run build` → fix errors → re-verify checklist
+15. Check Netlify deploy branch (Step 9) and push to the correct branch
 
 ---
 
@@ -320,3 +343,4 @@ Tracking phone: null
 - **Using the same image filenames as the template** — always use a business-specific prefix to avoid browser cache serving old placeholder images
 - **Leaving hardcoded text in `ExperienceContent.tsx` and `HomepageContentSection/index.tsx`** — these are not covered by data files and must be updated manually
 - **Leaving hardcoded previous-build content in `src/pages/services/index.astro` H1** — always check this file for leftover example business names
+- **Pushing only to `main` without checking Netlify's deploy branch** — always check the Netlify dashboard first; the site may be watching a feature branch, not `main`. Push to whichever branch Netlify is watching, or update Netlify's deploy branch to `main` before starting
